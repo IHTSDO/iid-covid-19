@@ -30,8 +30,12 @@ export class TerminologyService {
       );
   }
 
+  getValueSetExpansionUrl(ecl: string, terms: string) {
+    return `${this.snowstormFhirBase}/ValueSet/$expand?url=${this.fhirUrlParam}?fhir_vs=ecl/${encodeURIComponent(ecl)}&count=20&includeDesignations=true&filter=${terms}&designation=${this.lang}`
+  }
+
   expandValueSet(ecl: string, terms: string): Observable<any> {
-    let requestUrl = `${this.snowstormFhirBase}/ValueSet/$expand?url=${this.fhirUrlParam}?fhir_vs=ecl/${encodeURIComponent(ecl)}&count=20&includeDesignations=true&filter=${terms}&designation=${this.lang}`
+    let requestUrl = this.getValueSetExpansionUrl(ecl, terms);
     return this.http.get<any>(requestUrl)
       .pipe(
         catchError(this.handleError<any>('expandValueSet', {}))

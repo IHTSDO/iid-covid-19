@@ -12,6 +12,7 @@ export class BindingDetailsComponent implements OnInit {
   expansion: any[] | undefined;
   total: any;
   loading = false;
+  expandUrl = '';
 
   constructor(
     public dialogRef: MatDialogRef<BindingDetailsComponent>,
@@ -25,6 +26,7 @@ export class BindingDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.expandUrl = this.terminologyService.getValueSetExpansionUrl(this.data.ecl, '');
     this.terminologyService.expandValueSet(this.data.ecl, '').subscribe(response => {
       if (!response.issue) {
         this.expansion = response.expansion?.contains;

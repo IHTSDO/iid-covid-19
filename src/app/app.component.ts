@@ -9,7 +9,7 @@ import { TerminologyService } from './services/terminology.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-coding-demo-template';
+  title = 'COVID-19 - Interactive implementation demo';
   bindingsForExport: any[] = [];
   editions: any[] = [];
   languages = ['be', 'en', 'es', 'fr', 'no'];
